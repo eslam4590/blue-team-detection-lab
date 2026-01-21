@@ -1,0 +1,2 @@
+event.action:"user-added-to-group"
+and group.name : ("Administrators", "sudo")
