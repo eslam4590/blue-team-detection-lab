@@ -1,0 +1,1 @@
+AUTHFAIL Failed password for %{USER:user} from %{IP:src_ip}
