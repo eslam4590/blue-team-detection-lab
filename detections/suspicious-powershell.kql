@@ -1,0 +1,2 @@
+process.name:"powershell.exe"
+and process.command_line : ("-enc", "Invoke-Expression", "IEX")
