@@ -1,0 +1,3 @@
+event.action:"logon-failed"
+| stats count() by source.ip, user.name
+| where count > 5
