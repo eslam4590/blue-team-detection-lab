@@ -1,0 +1,3 @@
+event.action:"logon-success"
+| stats dc(source.geo.country_name) by user.name
+| where dc > 1
