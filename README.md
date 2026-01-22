@@ -1,97 +1,175 @@
-# 🛡️ Blue Team Detection Lab – ELK Stack
+# Blue Team Detection Lab (Elastic Stack)
 
-## 📌 Overview
+A hands-on Blue Team detection lab designed to simulate real-world SOC workflows,
+from log ingestion to alerting and incident response.
 
-This repository contains a **hands-on Blue Team / SOC Detection Lab** built using the **ELK Stack (Elasticsearch, Logstash, Kibana)**.
-
-The project simulates real-world **Security Operations Center (SOC)** activities such as log ingestion, parsing, detection engineering, anomaly-focused visualization, and access control.
-
-This lab is designed to demonstrate **practical Blue Team skills** rather than theoretical knowledge.
+This project demonstrates practical experience in detection engineering,
+alert triage, visualization, and security operations governance.
 
 ---
 
-## 🎯 Project Goals
+## 🎯 Project Objectives
 
-* Centralize security logs in a SIEM platform
-* Parse and normalize logs early in the pipeline
-* Build reusable detection queries for common attack techniques
-* Visualize anomalous behavior instead of raw log volume
-* Implement role-based access control (RBAC)
-* Audit log visibility to avoid blind spots
-
----
-
-## 🧰 Tools & Technologies
-
-* Elasticsearch
-* Logstash
-* Kibana
-* Filebeat / Winlogbeat
-* Sysmon (Windows)
-* Docker
+- Build a realistic SOC detection environment
+- Simulate real Linux and Windows log sources
+- Create meaningful detections and alerts
+- Visualize security events using dashboards
+- Apply RBAC and incident response best practices
 
 ---
 
-## 🧱 High-Level Architecture
+## 🧱 Lab Architecture
 
-The lab follows a standard SIEM pipeline:
+The lab is built using the Elastic Stack and simulates a small SOC environment.
 
-```
-Log Sources  →  Beats  →  Logstash  →  Elasticsearch  →  Kibana
-                       (Parsing)        (Storage)        (Detection & Dashboards)
-```
+**High-level flow:**
 
----
+Logs → Logstash → Elasticsearch → Detections → Alerts → Incidents → Dashboards
 
-## 🔍 Detection Coverage (Planned)
-
-* Brute force authentication attempts
-* Privilege escalation events
-* Suspicious PowerShell execution
-* Abnormal login behavior (time-based / geo-based)
+📁 See detailed architecture:
+- `architecture/README.md`
+- `architecture/architecture-diagram.png`
 
 ---
 
-## 📊 Visualization Strategy
+## 📥 Log Sources
 
-Dashboards are designed to:
+Realistic sample logs are used to simulate attacker behavior.
 
-* Highlight suspicious behavior
-* Reduce analyst noise
-* Support fast investigation
+### Linux
+- SSH authentication logs
+- Brute-force attempts
+- Privilege escalation via sudo
 
----
+📄 `log-sources/linux/auth.log`
 
-## 🔐 Security & Access Control
+### Windows
+- Process creation
+- Network connections
+- Persistence via registry
 
-The lab includes:
-
-* Role separation between SOC Analysts and Admins
-* Limited access to sensitive indices
-
----
-
-## 📁 Repository Structure
-
-> Each folder represents a specific SOC responsibility.
-
-```
-(Structure will be built step by step)
-```
+📄 `log-sources/windows/sysmon-config.xml`
 
 ---
 
-## 👤 Author
+## 🔄 Log Processing
 
-**Eslam Badawy**
+Logstash pipelines are used to parse and normalize logs before indexing.
+
+📁 `logstash/`
+
+Key features:
+- Grok parsing
+- Field normalization
+- Timestamp alignment
 
 ---
 
-## 🚀 Status
+## 🛡️ Detections
 
-🚧 Lab under active development. Components will be added incrementally.
+Detection rules identify suspicious or malicious activity.
+
+Examples:
+- SSH brute-force attacks
+- Suspicious PowerShell execution
+- Registry-based persistence
+- Reverse shell indicators
+
+📁 `detections/`
 
 ---
 
-> This repository reflects real-world Blue Team best practices and SOC workflows.
+## 🔔 Alerts
 
+Alerts are generated when detections match malicious behavior.
+
+Alert handling includes:
+- Severity classification
+- Analyst triage
+- Escalation to incidents
+
+📁 `alerts/`
+- `README.md`
+- `alert-severity.md`
+- `sample-alerts.md`
+
+---
+
+## 📊 Dashboards
+
+Dashboards provide visibility into:
+- Authentication activity
+- Detection trends
+- Alert volume
+- Suspicious behavior
+
+📁 `dashboards/`
+
+Screenshots:
+- `dashboard-ssh.png`
+- `dashboard-sysmon.png`
+
+---
+
+## 🚨 Incidents & Response
+
+Alerts may be escalated into incidents following defined playbooks.
+
+Included playbooks:
+- SSH Brute Force
+- Malware Detection
+- Privilege Escalation
+
+📁 `incidents/`
+
+---
+
+## 🔐 Role-Based Access Control (RBAC)
+
+RBAC is implemented to reflect real SOC environments.
+
+Roles include:
+- SOC Analyst
+- Detection Engineer
+- SOC Manager
+- Platform Administrator
+
+📁 `rbac/`
+- `README.md`
+- `roles-matrix.md`
+
+---
+
+## 🧠 Skills Demonstrated
+
+- SIEM architecture (Elastic Stack)
+- Log parsing and normalization
+- Detection engineering
+- Alert triage and prioritization
+- Incident response workflows
+- Security dashboards
+- RBAC and SOC governance
+
+---
+
+## 📌 Use Cases
+
+- SOC Analyst training
+- Detection engineering practice
+- Blue Team portfolio project
+- Interview demonstration lab
+
+---
+
+## 🚀 Future Enhancements
+
+- Threat intelligence enrichment
+- SOAR playbook automation
+- MITRE ATT&CK mapping
+- Cloud log sources (AWS / Azure)
+
+---
+
+## 📄 License
+
+This project is for educational and demonstration purposes only.
