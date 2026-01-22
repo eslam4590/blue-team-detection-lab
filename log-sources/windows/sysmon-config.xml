@@ -1,1 +1,32 @@
 
+<Sysmon schemaversion="4.90">
+  <HashAlgorithms>sha256</HashAlgorithms>
+
+  <EventFiltering>
+
+    <!-- Process Creation -->
+    <ProcessCreate onmatch="include">
+      <CommandLine condition="contains">powershell</CommandLine>
+      <CommandLine condition="contains">cmd.exe</CommandLine>
+    </ProcessCreate>
+
+    <!-- Network Connections -->
+    <NetworkConnect onmatch="include">
+      <DestinationPort condition="is">4444</DestinationPort>
+      <DestinationPort condition="is">3389</DestinationPort>
+    </NetworkConnect>
+
+    <!-- File Creation -->
+    <FileCreate onmatch="include">
+      <TargetFilename condition="end with">.exe</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
+    </FileCreate>
+
+    <!-- Registry Persistence -->
+    <RegistryEvent onmatch="include">
+      <TargetObject condition="contains">Run</TargetObject>
+      <TargetObject condition="contains">RunOnce</TargetObject>
+    </RegistryEvent>
+
+  </EventFiltering>
+</Sysmon>
